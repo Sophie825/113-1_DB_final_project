@@ -1,0 +1,164 @@
+/* styles.css */
+
+/* 調整 body 的樣式 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header */
+.header {
+    background-color: #577399;
+    height: 50px;
+    color: white;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.header .logo a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: white;
+    border: null;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 5px 20px;
+    cursor: pointer;
+    margin-right: 50px;
+    font-size: 14px;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex: 1;
+    margin-top: 50px; /* 預留 header 的高度 */
+    justify-content: center; /* 水平置中 */
+    /* align-items: center; 垂直置中 */
+    height: calc(100vh - 50px); /* 減去 header 高度 */
+    background-color: #f7f7ff;
+}
+
+/* Content */
+.content {
+    text-align: center;
+}
+
+
+.header {
+    background-color: #5b739f;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.logout-btn {
+    background-color: #ffffff;
+    color: #5b739f;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.main-content h2 {
+    color: #5b739f;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.management-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.option-card {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.option-card h3 {
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.option-card button {
+    background-color: #5b739f;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.option-card button:hover {
+    background-color: #486393;
+}
+
+.click_in {
+    background-color: #577399;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.click_in a {
+    text-decoration: none; /* 移除下劃線 */
+    color: white; /* 設置文字顏色 */
+    display: block; /* 使整個選單項目可以點擊 */
+    padding: 10px 5px;
+}
+
+.click_in a:hover {
+    background-color: #46688A;
+    transform: translateY(-3px);
+}
