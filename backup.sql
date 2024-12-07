@@ -44,7 +44,7 @@ CREATE TABLE public.audit (
 );
 
 
-ALTER TABLE public.audit OWNER TO postgre;
+ALTER TABLE public.audit OWNER TO postgres;
 
 --
 -- Name: class; Type: TABLE; Schema: public; Owner: postgres

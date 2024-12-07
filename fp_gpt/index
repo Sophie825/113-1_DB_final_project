@@ -1,0 +1,35 @@
+tutoring_management_system/
+│   # 1建檔 2架構 3修正
+    # 現在可以修改學生 老師 輔導老師 試聽 看上課在哪 看輔導老師班表 看哪些學生上什麼課 看哪個老師教什麼課
+    # 需要修正的：學生那邊顯示家長的資料  
+├── index.php                  # 主頁面 (登入頁面) 12
+├── login.php                  # 登入邏輯處理 12
+├── logout.php                 # 登出邏輯處理 12
+├── dashboard.php              # 系統主介面，提供指令選項 12
+│
+├── db/
+│   ├── db.php                 # 資料庫連線設定 12
+│   ├── db_utils.php           # 資料庫操作的工具函數 1
+│
+├── modules/
+│   ├── student.php            # 學生功能 (新增、查詢、更新) 12
+│   ├── teacher.php            # 教師功能 (新增、查詢、更新) 12
+│   ├── mentor.php             # Mentor 功能 (新增、查詢、更新) 12
+│   ├── audit.php              # Audit 功能 (新增、查詢、更新) 12
+│   ├── classroom.php          # 教室管理 (查看教室)  12
+│   ├── teach.php              # 教師課表管理 12
+│   ├── mentor_shift.php       # 輔導老師班表管理 12
+│   ├── take.php               # 哪些課 哪些學生 12
+│
+├── templates/
+│   ├── header.php             # 頁首模板 1
+│   ├── footer.php             # 頁尾模板 1
+│
+├── css/
+│   └── style.css              # CSS 樣式表 1
+│
+├── js/
+│   └── app.js                 # JavaScript 用於前端互動 1
+│
+└── sql/
+    └── create_tables.sql      # 資料表建立 SQL 腳本 1
