@@ -17,20 +17,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: nia
+-- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 -- *not* creating schema, since initdb creates it
 
 
-ALTER SCHEMA public OWNER TO nia;
+ALTER SCHEMA public OWNER TO postgre;
 
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: audit; Type: TABLE; Schema: public; Owner: nia
+-- Name: audit; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.audit (
@@ -44,10 +44,10 @@ CREATE TABLE public.audit (
 );
 
 
-ALTER TABLE public.audit OWNER TO nia;
+ALTER TABLE public.audit OWNER TO postgre;
 
 --
--- Name: class; Type: TABLE; Schema: public; Owner: nia
+-- Name: class; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.class (
@@ -59,10 +59,10 @@ CREATE TABLE public.class (
 );
 
 
-ALTER TABLE public.class OWNER TO nia;
+ALTER TABLE public.class OWNER TO postgres;
 
 --
--- Name: classroom; Type: TABLE; Schema: public; Owner: nia
+-- Name: classroom; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.classroom (
@@ -72,10 +72,10 @@ CREATE TABLE public.classroom (
 );
 
 
-ALTER TABLE public.classroom OWNER TO nia;
+ALTER TABLE public.classroom OWNER TO postgres;
 
 --
--- Name: mentor; Type: TABLE; Schema: public; Owner: nia
+-- Name: mentor; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.mentor (
@@ -87,10 +87,10 @@ CREATE TABLE public.mentor (
 );
 
 
-ALTER TABLE public.mentor OWNER TO nia;
+ALTER TABLE public.mentor OWNER TO postgres;
 
 --
--- Name: mentor_shift; Type: TABLE; Schema: public; Owner: nia
+-- Name: mentor_shift; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.mentor_shift (
@@ -99,10 +99,10 @@ CREATE TABLE public.mentor_shift (
 );
 
 
-ALTER TABLE public.mentor_shift OWNER TO nia;
+ALTER TABLE public.mentor_shift OWNER TO postgres;
 
 --
--- Name: parent; Type: TABLE; Schema: public; Owner: nia
+-- Name: parent; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.parent (
@@ -112,10 +112,10 @@ CREATE TABLE public.parent (
 );
 
 
-ALTER TABLE public.parent OWNER TO nia;
+ALTER TABLE public.parent OWNER TO postgres;
 
 --
--- Name: student; Type: TABLE; Schema: public; Owner: nia
+-- Name: student; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.student (
@@ -129,10 +129,10 @@ CREATE TABLE public.student (
 );
 
 
-ALTER TABLE public.student OWNER TO nia;
+ALTER TABLE public.student OWNER TO postgres;
 
 --
--- Name: take; Type: TABLE; Schema: public; Owner: nia
+-- Name: take; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.take (
@@ -141,10 +141,10 @@ CREATE TABLE public.take (
 );
 
 
-ALTER TABLE public.take OWNER TO nia;
+ALTER TABLE public.take OWNER TO postgres;
 
 --
--- Name: teach; Type: TABLE; Schema: public; Owner: nia
+-- Name: teach; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.teach (
@@ -153,10 +153,10 @@ CREATE TABLE public.teach (
 );
 
 
-ALTER TABLE public.teach OWNER TO nia;
+ALTER TABLE public.teach OWNER TO postgres;
 
 --
--- Name: teacher; Type: TABLE; Schema: public; Owner: nia
+-- Name: teacher; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.teacher (
@@ -168,10 +168,10 @@ CREATE TABLE public.teacher (
 );
 
 
-ALTER TABLE public.teacher OWNER TO nia;
+ALTER TABLE public.teacher OWNER TO postgres;
 
 --
--- Name: workers; Type: TABLE; Schema: public; Owner: nia
+-- Name: workers; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.workers (
@@ -182,10 +182,10 @@ CREATE TABLE public.workers (
 );
 
 
-ALTER TABLE public.workers OWNER TO nia;
+ALTER TABLE public.workers OWNER TO postgres;
 
 --
--- Data for Name: audit; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: audit; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.audit (audit_id, audit_name, school, grade, tel, address, status) FROM stdin;
@@ -293,7 +293,7 @@ a_00095	劉佳穎	新北市立新店高級中學	一年級	0910-588-626	台北�
 
 
 --
--- Data for Name: class; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: class; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.class (class_id, class_name, semester, "time", classroom_id) FROM stdin;
@@ -349,7 +349,7 @@ COPY public.class (class_id, class_name, semester, "time", classroom_id) FROM st
 
 
 --
--- Data for Name: classroom; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: classroom; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.classroom (classroom_id, classroom_name, capacity) FROM stdin;
@@ -368,7 +368,7 @@ r_011	303	250
 
 
 --
--- Data for Name: mentor; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: mentor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.mentor (mentor_id, mentor_name, tel, address, status) FROM stdin;
@@ -449,7 +449,7 @@ COPY public.mentor (mentor_id, mentor_name, tel, address, status) FROM stdin;
 
 
 --
--- Data for Name: mentor_shift; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: mentor_shift; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.mentor_shift (shift, mentor_id) FROM stdin;
@@ -487,7 +487,7 @@ COPY public.mentor_shift (shift, mentor_id) FROM stdin;
 
 
 --
--- Data for Name: parent; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: parent; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.parent (parent_name, parent_tel, student_id) FROM stdin;
@@ -1348,7 +1348,7 @@ COPY public.parent (parent_name, parent_tel, student_id) FROM stdin;
 
 
 --
--- Data for Name: student; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: student; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.student (student_id, student_name, school, grade, tel, address, status) FROM stdin;
@@ -2184,7 +2184,7 @@ s_2023316	張心妤	台北市立第一女子高級中學	三年級	0982-375-637	
 
 
 --
--- Data for Name: take; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: take; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.take (student_id, class_id) FROM stdin;
@@ -3018,7 +3018,7 @@ s_2023316	111203C
 
 
 --
--- Data for Name: teach; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: teach; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.teach (teacher_id, class_id) FROM stdin;
@@ -3074,7 +3074,7 @@ t_004	113203C
 
 
 --
--- Data for Name: teacher; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: teacher; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.teacher (teacher_id, teacher_name, tel, address, status) FROM stdin;
@@ -3088,7 +3088,7 @@ t_006	林欣婷	0959537527	台北市北投區中央北路三段25號	離職
 
 
 --
--- Data for Name: workers; Type: TABLE DATA; Schema: public; Owner: nia
+-- Data for Name: workers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.workers (worker_id, worker_name, status, password) FROM stdin;
@@ -3131,7 +3131,7 @@ w_035	謝語恩	leave	123456
 
 
 --
--- Name: audit audit_pkey; Type: CONSTRAINT; Schema: public; Owner: nia
+-- Name: audit audit_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.audit
@@ -3139,7 +3139,7 @@ ALTER TABLE ONLY public.audit
 
 
 --
--- Name: class class_pkey; Type: CONSTRAINT; Schema: public; Owner: nia
+-- Name: class class_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.class
@@ -3147,7 +3147,7 @@ ALTER TABLE ONLY public.class
 
 
 --
--- Name: classroom classroom_pkey; Type: CONSTRAINT; Schema: public; Owner: nia
+-- Name: classroom classroom_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.classroom
@@ -3155,7 +3155,7 @@ ALTER TABLE ONLY public.classroom
 
 
 --
--- Name: mentor mentor_pkey; Type: CONSTRAINT; Schema: public; Owner: nia
+-- Name: mentor mentor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.mentor
@@ -3163,7 +3163,7 @@ ALTER TABLE ONLY public.mentor
 
 
 --
--- Name: student student_pkey; Type: CONSTRAINT; Schema: public; Owner: nia
+-- Name: student student_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.student
@@ -3171,7 +3171,7 @@ ALTER TABLE ONLY public.student
 
 
 --
--- Name: teacher teacher_pkey; Type: CONSTRAINT; Schema: public; Owner: nia
+-- Name: teacher teacher_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.teacher
@@ -3179,7 +3179,7 @@ ALTER TABLE ONLY public.teacher
 
 
 --
--- Name: workers workers_pkey; Type: CONSTRAINT; Schema: public; Owner: nia
+-- Name: workers workers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.workers
@@ -3187,7 +3187,7 @@ ALTER TABLE ONLY public.workers
 
 
 --
--- Name: class class_classroom_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: nia
+-- Name: class class_classroom_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.class
@@ -3195,7 +3195,7 @@ ALTER TABLE ONLY public.class
 
 
 --
--- Name: mentor_shift mentor_shift_mentor_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: nia
+-- Name: mentor_shift mentor_shift_mentor_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.mentor_shift
@@ -3203,7 +3203,7 @@ ALTER TABLE ONLY public.mentor_shift
 
 
 --
--- Name: parent parent_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: nia
+-- Name: parent parent_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.parent
@@ -3211,7 +3211,7 @@ ALTER TABLE ONLY public.parent
 
 
 --
--- Name: take take_class_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: nia
+-- Name: take take_class_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.take
@@ -3219,7 +3219,7 @@ ALTER TABLE ONLY public.take
 
 
 --
--- Name: take take_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: nia
+-- Name: take take_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.take
@@ -3227,7 +3227,7 @@ ALTER TABLE ONLY public.take
 
 
 --
--- Name: teach teach_class_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: nia
+-- Name: teach teach_class_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.teach
@@ -3235,7 +3235,7 @@ ALTER TABLE ONLY public.teach
 
 
 --
--- Name: teach teach_teacher_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: nia
+-- Name: teach teach_teacher_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.teach
@@ -3243,7 +3243,7 @@ ALTER TABLE ONLY public.teach
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: nia
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
 
 REVOKE USAGE ON SCHEMA public FROM PUBLIC;
