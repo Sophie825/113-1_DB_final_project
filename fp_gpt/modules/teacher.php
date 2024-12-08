@@ -55,16 +55,16 @@ $teachers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo"><a href="web.html">BEST MATH</a></div>
-            <button class="login-button"><a href="web.html">登出</a></button>
+            <div class="logo"><a href="web.php">BEST MATH</a></div>
+            <button class="login-button"><a href="web.php">登出</a></button>
         </header>
         <div class="sidebar">
             <ul class="menu">
-                <li><a href="student.html">學生資料</a></li>
-                <li><a href="teacher.html">教師資料</a></li>
-                <li><a href="mentor.html">輔導老師資料</a></li>
-                <li><a href="class.html">班級資料</a></li>
-                <li><a href="audit.html">試聽資料</a></li>
+                <li><a href="modules/student.php">學生資料</a></li>
+                <li><a href="modules/teacher.php">教師資料</a></li>
+                <li><a href="modules/mentor.php">輔導教師資料</a></li>
+                <li><a href="modules/class.php">班級資料</a></li>
+                <li><a href="modules/audit.php">試聽資料</a></li>
             </ul>
         </div>
         

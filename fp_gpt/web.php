@@ -26,7 +26,7 @@
             </div>
             <div class="card">
                 <h3>行政人員登入</h3>
-                <button onclick="window.location.href='admin_login.html'">登入</button>
+                <button onclick="window.location.href='admin_login.php'">登入</button>
             </div>
         </div>
     </div>
