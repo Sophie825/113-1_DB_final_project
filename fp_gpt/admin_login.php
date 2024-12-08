@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // 登入成功，保存會話資訊
         $_SESSION['user_id'] = $user['worker_id'];
         $_SESSION['username'] = $user['worker_name'];
-        $_SESSION['role'] = $user['status']; // 身份：如 "admin", "mentor"
+        // $_SESSION['role'] = $user['status']; // 身份：如 "admin", "mentor"
 
         // 跳轉到管理主頁
         header('Location: admin_main.php');
