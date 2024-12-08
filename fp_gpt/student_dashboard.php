@@ -37,7 +37,7 @@ session_start();
         </main>
 
         <!-- 頁尾 -->
-        <?php include 'templates/footer.php'; ?>
+        <?php include '../templates/footer.php'; ?>
     </div>
 </body>
 </html>

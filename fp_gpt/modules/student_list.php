@@ -71,4 +71,4 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </tbody>
 </table>
 
-<?php include 'templates/footer.php'; ?>
+<?php include '../templates/footer.php'; ?>

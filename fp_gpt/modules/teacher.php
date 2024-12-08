@@ -141,4 +141,4 @@ $teachers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 </body>
 </html>
-<?php include 'templates/footer.php'; ?>
+<?php include '../templates/footer.php'; ?>

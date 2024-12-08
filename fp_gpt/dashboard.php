@@ -40,5 +40,5 @@ if ($role === 'admin') {
 }
 echo "<a href='logout.php'>登出</a>";
 
-include 'templates/footer.php';
+include '../templates/footer.php';
 ?>

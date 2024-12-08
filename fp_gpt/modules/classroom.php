@@ -34,4 +34,4 @@ $stmt->execute(['113-1']);
     <?php endwhile; ?>
 </div>
 
-<?php include 'templates/footer.php'; ?>
+<?php include '../templates/footer.php'; ?>
