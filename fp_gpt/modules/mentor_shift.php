@@ -1,6 +1,6 @@
 <?php
-include 'db/db.php';
-include 'templates/header.php';
+include_once '../db/db.php'; 
+include '../templates/header.php'; 
 
 // 查詢 MENTOR_SHIFT 和 MENTOR 表的固定班表
 $stmt = $pdo->prepare("

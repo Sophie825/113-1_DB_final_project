@@ -1,5 +1,6 @@
 <?php
-include 'db/db.php';
+include '../db/db.php'; 
+include '../templates/header.php'; 
 
 // 處理表單提交（新增或修改）
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

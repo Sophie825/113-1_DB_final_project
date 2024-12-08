@@ -1,6 +1,6 @@
 <?php
-include 'db/db.php';
-include 'templates/header.php';
+include_once '../db/db.php'; 
+include '../templates/header.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 新增審核記錄

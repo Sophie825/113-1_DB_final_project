@@ -1,6 +1,6 @@
 <?php
-include 'db/db.php';
-//include 'templates/header.php';
+include_once '../db/db.php'; 
+include '../templates/header.php'; 
 
 // 處理新增或修改教師的表單提交
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

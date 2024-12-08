@@ -1,6 +1,6 @@
 <?php
-include 'db/db.php';
-include 'templates/header.php';
+include_once '../db/db.php'; 
+include '../templates/header.php'; 
 
 // 獲取傳遞的 class_id
 $class_id = $_GET['class_id'] ?? null;
