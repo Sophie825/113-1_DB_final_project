@@ -11,9 +11,9 @@ tutoring_management_system/
 │   ├── db.php                 # 資料庫連線設定 
 │
 ├── modules/
-│   ├── student.php            # 學生功能 (新增、查詢、更新) 123    student
+│   ├── student.php            # 學生功能 (新增、查詢、更新) 123    student 修正搜尋跟修改的邏輯done
 │   ├── teacher.php            # 教師功能 (新增、查詢、更新) 123 teacher
-│   ├── mentor.php             # Mentor 功能 (新增、查詢、更新) 123 mentor
+│   ├── mentor.php             # Mentor 功能 (新增、查詢、更新) 123 mentor 修正判斷mentor是否on 並且顯示其shift
 │   ├── audit.php              # Audit 功能 (新增、查詢、更新) 123 audit
 │   ├── classroom.php          # 教室管理 (查看教室)  123 class然後點擊展開是student list
 │   ├── student_list.php       # 列出上該課程的學生 123 student list

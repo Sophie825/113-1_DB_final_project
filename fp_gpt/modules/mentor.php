@@ -32,13 +32,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// 查詢輔導教師資料
+// 查詢輔導教師資料，僅顯示 status = 'on'
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
-    $stmt = $pdo->prepare("SELECT * FROM MENTOR WHERE mentor_name LIKE ? OR mentor_id LIKE ?");
+    $stmt = $pdo->prepare("
+        SELECT 
+            m.mentor_id, 
+            m.mentor_name, 
+            m.tel, 
+            m.address, 
+            m.status, 
+            ms.shift 
+        FROM MENTOR m
+        LEFT JOIN MENTOR_SHIFT ms ON m.mentor_id = ms.mentor_id
+        WHERE m.status = 'on' AND (m.mentor_name LIKE ? OR m.mentor_id LIKE ?)
+    ");
     $stmt->execute(["%$search%", "%$search%"]);
 } else {
-    $stmt = $pdo->query("SELECT * FROM MENTOR");
+    $stmt = $pdo->query("
+        SELECT 
+            m.mentor_id, 
+            m.mentor_name, 
+            m.tel, 
+            m.address, 
+            m.status, 
+            ms.shift 
+        FROM MENTOR m
+        LEFT JOIN MENTOR_SHIFT ms ON m.mentor_id = ms.mentor_id
+        WHERE m.status = 'on'
+    ");
 }
 
 $mentors = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -88,6 +110,7 @@ $mentors = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>TEL</th>
                         <th>ADDRESS</th>
                         <th>STATUS</th>
+                        <th>SHIFT</th>
                         <th>ACTION</th>
                     </tr>
                 </thead>
@@ -100,6 +123,7 @@ $mentors = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?= htmlspecialchars($mentor['tel']) ?></td>
                                 <td><?= htmlspecialchars($mentor['address']) ?></td>
                                 <td><?= htmlspecialchars($mentor['status']) ?></td>
+                                <td><?= htmlspecialchars($mentor['shift'] ?? 'N/A') ?></td>
                                 <td>
                                     <button onclick="editMentor('<?= $mentor['mentor_id'] ?>', '<?= $mentor['mentor_name'] ?>', '<?= $mentor['tel'] ?>', '<?= $mentor['address'] ?>', '<?= $mentor['status'] ?>')">修改</button>
                                 </td>
@@ -107,7 +131,7 @@ $mentors = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="6">無相關資料</td>
+                            <td colspan="7">無相關資料</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

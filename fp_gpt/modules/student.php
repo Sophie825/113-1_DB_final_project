@@ -1,9 +1,60 @@
 <?php
-include '../db/db.php'; 
-include '../templates/header.php'; 
+include_once '../db/db.php';
+include '../templates/header.php';
+
+$search_query = '';
+$students = [];
+$student_details = null;
+
+// 查詢學生資料
+if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
+    $search_query = trim($_GET['search']);
+    $stmt = $pdo->prepare("
+        SELECT 
+            s.student_id, 
+            s.student_name, 
+            s.school, 
+            s.grade, 
+            s.tel, 
+            s.address, 
+            s.status,
+            p.parent_name, 
+            p.parent_tel 
+        FROM STUDENT s
+        LEFT JOIN PARENT p ON s.student_id = p.student_id
+        WHERE s.student_name LIKE ? OR s.student_id LIKE ?
+    ");
+    $stmt->execute(["%$search_query%", "%$search_query%"]);
+    $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// 點選學生後載入該學生詳細資料
+if (isset($_GET['student_id']) && !empty(trim($_GET['student_id']))) {
+    $student_id = trim($_GET['student_id']);
+    $stmt = $pdo->prepare("
+        SELECT 
+            s.student_id, 
+            s.student_name, 
+            s.school, 
+            s.grade, 
+            s.tel, 
+            s.address, 
+            s.status, 
+            s.version,
+            p.parent_name, 
+            p.parent_tel 
+        FROM STUDENT s
+        LEFT JOIN PARENT p ON s.student_id = p.student_id
+        WHERE s.student_id = ?
+    ");
+    $stmt->execute([$student_id]);
+    $student_details = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
 // 處理表單提交（新增或修改）
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'] ?? null;
+
     $student_id = $_POST['student_id'] ?? null;
     $student_name = $_POST['student_name'];
     $school = $_POST['school'];
@@ -15,13 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $parent_tel = $_POST['parent_tel'];
     $version = $_POST['version'] ?? 0;
 
-    if ($_POST['action'] === 'create') {
+    if ($action === 'create') {
         // 新增學生及家長資料
         $stmt = $pdo->prepare("
-            INSERT INTO STUDENT (student_id, student_name, school, grade, tel, address, status, version)
-            VALUES (?, ?, ?, ?, ?, ?, ?, 0)
+            INSERT INTO STUDENT (student_name, school, grade, tel, address, status, version)
+            VALUES (?, ?, ?, ?, ?, ?, 0)
         ");
-        $stmt->execute([$student_id, $student_name, $school, $grade, $tel, $address, $status]);
+        $stmt->execute([$student_name, $school, $grade, $tel, $address, $status]);
+        $student_id = $pdo->lastInsertId();
 
         $stmt = $pdo->prepare("
             INSERT INTO PARENT (parent_name, parent_tel, student_id)
@@ -30,17 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$parent_name, $parent_tel, $student_id]);
 
         echo "<p>學生新增成功！</p>";
-    } elseif ($_POST['action'] === 'update') {
+    } elseif ($action === 'update') {
         // 修改學生及家長資料
-        // 檢查版本是否匹配
-        $checkStmt = $pdo->prepare("
-            SELECT version FROM STUDENT WHERE student_id = ?
-        ");
+        $checkStmt = $pdo->prepare("SELECT version FROM STUDENT WHERE student_id = ?");
         $checkStmt->execute([$student_id]);
         $currentVersion = $checkStmt->fetchColumn();
 
         if ($currentVersion == $version) {
-            // 版本匹配，允許更新
             $stmt = $pdo->prepare("
                 UPDATE STUDENT 
                 SET student_name = ?, school = ?, grade = ?, tel = ?, address = ?, status = ?, version = version + 1
@@ -58,61 +106,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             echo "<p>學生資料修改成功！</p>";
         } else {
-            // 版本不匹配，拒絕更新
-            echo "<p>更新失敗，該資料已被其他操作修改，請重新加載頁面。</p>";
+            echo "<p>更新失敗，資料已被其他操作修改，請重新載入頁面。</p>";
         }
     }
 }
-
-// 查詢學生與家長資料
-$search_query = '';
-if (isset($_GET['search'])) {
-    $search_query = $_GET['search'];
-    $stmt = $pdo->prepare("
-        SELECT 
-            s.student_id, 
-            s.student_name, 
-            s.school, 
-            s.grade, 
-            s.tel, 
-            s.address, 
-            s.status, 
-            s.version,
-            p.parent_name, 
-            p.parent_tel
-        FROM 
-            STUDENT s
-        LEFT JOIN 
-            PARENT p
-        ON 
-            s.student_id = p.student_id
-        WHERE 
-            s.student_name LIKE ? OR s.student_id LIKE ?
-    ");
-    $stmt->execute(["%$search_query%", "%$search_query%"]);
-} else {
-    $stmt = $pdo->query("
-        SELECT 
-            s.student_id, 
-            s.student_name, 
-            s.school, 
-            s.grade, 
-            s.tel, 
-            s.address, 
-            s.status, 
-            s.version,
-            p.parent_name, 
-            p.parent_tel
-        FROM 
-            STUDENT s
-        LEFT JOIN 
-            PARENT p
-        ON 
-            s.student_id = p.student_id
-    ");
-}
-
-$students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -131,11 +128,11 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </header>
         <div class="sidebar">
             <ul class="menu">
-                <li><a href="modules/student.php">學生資料</a></li>
-                <li><a href="modules/teacher.php">教師資料</a></li>
-                <li><a href="modules/mentor.php">輔導教師資料</a></li>
-                <li><a href="modules/class.php">班級資料</a></li>
-                <li><a href="modules/audit.php">試聽資料</a></li>
+                <li><a href="student.php">學生資料</a></li>
+                <li><a href="teacher.php">教師資料</a></li>
+                <li><a href="mentor.php">輔導教師資料</a></li>
+                <li><a href="class.php">班級資料</a></li>
+                <li><a href="audit.php">試聽資料</a></li>
             </ul>
         </div>
         
@@ -147,50 +144,63 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <input type="text" name="search" placeholder="搜尋學生資料" value="<?= htmlspecialchars($search_query) ?>">
                         <button class="search-button" type="submit">搜尋</button>
                     </form>
+                    <button class="create-button" onclick="document.getElementById('create-form').style.display='block'">+ CREATE</button>
                 </div>
-                <button class="create-button" onclick="document.getElementById('student-form').style.display='block'">+ CREATE</button>
             </div>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>SCHOOL</th>
-                        <th>GRADE</th>
-                        <th>TEL</th>
-                        <th>ADDRESS</th>
-                        <th>PARENT</th>
-                        <th>PARENT_TEL</th>
-                        <th>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!empty($students)): ?>
+
+            <!-- 搜尋結果 -->
+            <?php if (!empty($students)): ?>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>SCHOOL</th>
+                            <th>GRADE</th>
+                            <th>PARENT</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <?php foreach ($students as $student): ?>
                             <tr>
                                 <td><?= htmlspecialchars($student['student_id']) ?></td>
                                 <td><?= htmlspecialchars($student['student_name']) ?></td>
-                                <td><?= htmlspecialchars($student['school']) ?></td>
-                                <td><?= htmlspecialchars($student['grade']) ?></td>
-                                <td><?= htmlspecialchars($student['tel']) ?></td>
-                                <td><?= htmlspecialchars($student['address']) ?></td>
+                                <td><?= htmlspecialchars($student['school'] ?? 'N/A') ?></td>
+                                <td><?= htmlspecialchars($student['grade'] ?? 'N/A') ?></td>
                                 <td><?= htmlspecialchars($student['parent_name'] ?? 'N/A') ?></td>
-                                <td><?= htmlspecialchars($student['parent_tel'] ?? 'N/A') ?></td>
-                                <td><?= htmlspecialchars($student['status']) ?></td>
+                                <td>
+                                    <a href="student.php?student_id=<?= htmlspecialchars($student['student_id']) ?>">編輯</a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="9">無相關資料</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            <?php elseif (!empty($search_query)): ?>
+                <p>找不到相關資料。</p>
+            <?php endif; ?>
 
-            <form id="student-form" method="post" style="display:none;">
-                <h2>新增/修改學生資料</h2>
+            <!-- 編輯表單 -->
+            <?php if ($student_details): ?>
+                <form method="post">
+                    <input type="hidden" name="action" value="update">
+                    <input type="hidden" name="student_id" value="<?= htmlspecialchars($student_details['student_id']) ?>">
+                    <input type="hidden" name="version" value="<?= htmlspecialchars($student_details['version']) ?>">
+                    <label>姓名：<input type="text" name="student_name" value="<?= htmlspecialchars($student_details['student_name']) ?>" required></label><br>
+                    <label>學校：<input type="text" name="school" value="<?= htmlspecialchars($student_details['school']) ?>"></label><br>
+                    <label>年級：<input type="number" name="grade" value="<?= htmlspecialchars($student_details['grade']) ?>"></label><br>
+                    <label>電話：<input type="text" name="tel" value="<?= htmlspecialchars($student_details['tel']) ?>"></label><br>
+                    <label>地址：<input type="text" name="address" value="<?= htmlspecialchars($student_details['address']) ?>"></label><br>
+                    <label>狀態：<input type="text" name="status" value="<?= htmlspecialchars($student_details['status']) ?>"></label><br>
+                    <label>家長姓名：<input type="text" name="parent_name" value="<?= htmlspecialchars($student_details['parent_name']) ?>"></label><br>
+                    <label>家長電話：<input type="text" name="parent_tel" value="<?= htmlspecialchars($student_details['parent_tel']) ?>"></label><br>
+                    <button type="submit">提交</button>
+                </form>
+            <?php endif; ?>
+
+            <!-- 新增表單 -->
+            <form id="create-form" method="post" style="display:none;">
                 <input type="hidden" name="action" value="create">
-                <input type="hidden" name="version" value="0">
                 <label>姓名：<input type="text" name="student_name" required></label><br>
                 <label>學校：<input type="text" name="school"></label><br>
                 <label>年級：<input type="number" name="grade"></label><br>
@@ -199,7 +209,7 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <label>狀態：<input type="text" name="status"></label><br>
                 <label>家長姓名：<input type="text" name="parent_name"></label><br>
                 <label>家長電話：<input type="text" name="parent_tel"></label><br>
-                <button type="submit">提交</button>
+                <button type="submit">新增</button>
             </form>
         </main>
     </div>
