@@ -2,7 +2,7 @@
 include 'db.php';
 include 'templates/header.php';
 
-// 查詢學期為 113-1 的課程及其相關的教室和授課老師
+// 查詢 113-1 學期的課程及其相關資訊
 $stmt = $pdo->prepare("
     SELECT 
         CLASS.class_id, 
@@ -21,21 +21,17 @@ $stmt->execute(['113-1']);
 ?>
 
 <h2>113-1 學期課程一覽</h2>
-<table border="1">
-    <tr>
-        <th>課程編號</th>
-        <th>課程名稱</th>
-        <th>教室名稱</th>
-        <th>授課老師</th>
-    </tr>
+<div class="management-options">
     <?php while ($row = $stmt->fetch()): ?>
-        <tr>
-            <td><?php echo htmlspecialchars($row['class_id']); ?></td>
-            <td><?php echo htmlspecialchars($row['class_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['classroom_name'] ?? '無指定教室'); ?></td>
-            <td><?php echo htmlspecialchars($row['teacher_name'] ?? '無指定老師'); ?></td>
-        </tr>
+        <div class="option-card">
+            <h3><?php echo htmlspecialchars($row['class_name']); ?></h3>
+            <p>教室：<?php echo htmlspecialchars($row['classroom_name'] ?? '無指定教室'); ?></p>
+            <p>老師：<?php echo htmlspecialchars($row['teacher_name'] ?? '無指定老師'); ?></p>
+            <button class="click_in">
+                <a href="student_list.php?class_id=<?php echo htmlspecialchars($row['class_id']); ?>">查看學生名單</a>
+            </button>
+        </div>
     <?php endwhile; ?>
-</table>
+</div>
 
 <?php include 'templates/footer.php'; ?>

@@ -45,43 +45,113 @@ if (isset($_GET['search'])) {
 } else {
     $stmt = $pdo->query("SELECT * FROM AUDIT");
 }
+
+$audit_records = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<h2>審核管理</h2>
-<form method="post">
-    <label>ID：<input type="text" name="audit_id" required></label><br>
-    <label>姓名：<input type="text" name="audit_name" required></label><br>
-    <label>學校：<input type="text" name="school"></label><br>
-    <label>年級：<input type="text" name="grade"></label><br>
-    <label>電話：<input type="text" name="tel"></label><br>
-    <label>地址：<input type="text" name="address"></label><br>
-    <label>狀態：<input type="text" name="status"></label><br>
-    <button type="submit">新增審核</button>
-</form>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Math - 試聽資料</title>
+    <link rel="stylesheet" href="E:\DB_FinalProject\DB_CSS\style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo"><a href="web.html">BEST MATH</a></div>
+            <button class="login-button"><a href="web.html">登出</a></button>
+        </header>
+        <div class="sidebar">
+            <ul class="menu">
+                <li><a href="student.html">學生資料</a></li>
+                <li><a href="teacher.html">教師資料</a></li>
+                <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="class.html">班級資料</a></li>
+                <li><a href="audit.html">試聽資料</a></li>
+            </ul>
+        </div>
+        
+        <main class="content">
+            <div class="content-header">
+                <h1>試聽資料</h1>
+                <div class="search-bar">
+                    <form method="get">
+                        <input type="text" name="search" placeholder="搜尋試聽資料" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+                        <button class="search-button" type="submit">搜尋</button>
+                    </form>
+                </div>
+                <button class="create-button" onclick="document.getElementById('audit-form').style.display='block'">+ CREATE</button>
+            </div>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>SCHOOL</th>
+                        <th>GRADE</th>
+                        <th>TEL</th>
+                        <th>ADDRESS</th>
+                        <th>STATUS</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($audit_records)): ?>
+                        <?php foreach ($audit_records as $record): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($record['audit_id']) ?></td>
+                                <td><?= htmlspecialchars($record['audit_name']) ?></td>
+                                <td><?= htmlspecialchars($record['school']) ?></td>
+                                <td><?= htmlspecialchars($record['grade']) ?></td>
+                                <td><?= htmlspecialchars($record['tel']) ?></td>
+                                <td><?= htmlspecialchars($record['address']) ?></td>
+                                <td><?= htmlspecialchars($record['status']) ?></td>
+                                <td>
+                                    <button onclick="editAudit('<?= $record['audit_id'] ?>', '<?= $record['audit_name'] ?>', '<?= $record['school'] ?>', '<?= $record['grade'] ?>', '<?= $record['tel'] ?>', '<?= $record['address'] ?>', '<?= $record['status'] ?>')">修改</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="8">無相關資料</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
 
-<h3>審核記錄列表</h3>
-<form method="get">
-    <label>查詢審核：<input type="text" name="search" placeholder="輸入姓名或ID"></label>
-    <button type="submit">查詢</button>
-</form>
-<ul>
-<?php
-while ($row = $stmt->fetch()) {
-    echo "<li>
-            {$row['audit_name']} - 學校：{$row['school']} - 年級：{$row['grade']} - 狀態：{$row['status']}
-            <form method='post' style='display:inline'>
-                <input type='hidden' name='update_audit' value='1'>
-                <input type='hidden' name='audit_id' value='{$row['audit_id']}'>
-                <input type='hidden' name='audit_name' value='{$row['audit_name']}'>
-                <input type='hidden' name='school' value='{$row['school']}'>
-                <input type='hidden' name='grade' value='{$row['grade']}'>
-                <input type='hidden' name='tel' value='{$row['tel']}'>
-                <input type='hidden' name='address' value='{$row['address']}'>
-                <input type='hidden' name='status' value='{$row['status']}'>
-                <button type='submit'>修改</button>
+            <!-- 新增或修改審核資料的表單 -->
+            <form id="audit-form" method="post" style="display:none;">
+                <h2>新增/修改試聽資料</h2>
+                <label>ID：<input type="text" name="audit_id" id="audit_id" required></label><br>
+                <label>姓名：<input type="text" name="audit_name" id="audit_name" required></label><br>
+                <label>學校：<input type="text" name="school" id="school"></label><br>
+                <label>年級：<input type="text" name="grade" id="grade"></label><br>
+                <label>電話：<input type="text" name="tel" id="tel"></label><br>
+                <label>地址：<input type="text" name="address" id="address"></label><br>
+                <label>狀態：<input type="text" name="status" id="status"></label><br>
+                <input type="hidden" name="update_audit" id="update_audit" value="">
+                <button type="submit">提交</button>
             </form>
-         </li>";
-}
-?>
-</ul>
+        </main>
+    </div>
+
+    <script>
+        // 用於填充修改表單的資料
+        function editAudit(id, name, school, grade, tel, address, status) {
+            document.getElementById('audit-form').style.display = 'block';
+            document.getElementById('audit_id').value = id;
+            document.getElementById('audit_name').value = name;
+            document.getElementById('school').value = school;
+            document.getElementById('grade').value = grade;
+            document.getElementById('tel').value = tel;
+            document.getElementById('address').value = address;
+            document.getElementById('status').value = status;
+            document.getElementById('update_audit').value = '1';
+        }
+    </script>
+</body>
+</html>
 <?php include 'templates/footer.php'; ?>

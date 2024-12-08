@@ -2,7 +2,7 @@
 include 'db.php';
 include 'templates/header.php';
 
-// 查詢並依 shift 由小到大排序
+// 查詢 MENTOR_SHIFT 和 MENTOR 表的固定班表
 $stmt = $pdo->prepare("
     SELECT 
         MENTOR_SHIFT.shift, 
@@ -13,20 +13,54 @@ $stmt = $pdo->prepare("
 ");
 $stmt->execute();
 
+// 將班表按 shift 分組
+$shifts = [];
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $shift = $row['shift'];
+    $mentor = $row['mentor_name'] ?? '無指定導師';
+
+    // 如果班次尚未初始化，則建立班次組
+    if (!isset($shifts[$shift])) {
+        $shifts[$shift] = [];
+    }
+
+    // 將導師名加入對應班次
+    $shifts[$shift][] = $mentor;
+}
 ?>
 
-<h2>導師班表</h2>
-<table border="1">
-    <tr>
-        <th>星期</th>
-        <th>導師姓名</th>
-    </tr>
-    <?php while ($row = $stmt->fetch()): ?>
-        <tr>
-            <td><?php echo htmlspecialchars($row['shift']); ?></td>
-            <td><?php echo htmlspecialchars($row['mentor_name'] ?? '無指定導師'); ?></td>
-        </tr>
-    <?php endwhile; ?>
-</table>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>輔導老師班表</title>
+    <link rel="stylesheet" href="E:\DB_FinalProject\DB_CSS\style_mentor_shift.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="web.html">BEST MATH</a>
+        </div>
+    </header>
 
+    <div class="container">
+        <main class="content">
+            <h1>輔導老師班表</h1>
+            <div class="schedule-grid">
+                <?php foreach ($shifts as $shift => $mentors): ?>
+                    <div class="option-card">
+                        <h3>班次：<?= htmlspecialchars($shift) ?></h3>
+                        <div class="teachers">
+                            <?php foreach ($mentors as $mentor): ?>
+                                <button class="mentor_name"><?= htmlspecialchars($mentor) ?></button>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
 <?php include 'templates/footer.php'; ?>
