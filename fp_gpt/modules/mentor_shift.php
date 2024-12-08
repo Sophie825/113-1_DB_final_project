@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'db/db.php';
 include 'templates/header.php';
 
 // 查詢 MENTOR_SHIFT 和 MENTOR 表的固定班表

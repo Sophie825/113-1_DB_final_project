@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'db/db.php';
 include 'templates/header.php';
 
 // 獲取傳遞的 class_id

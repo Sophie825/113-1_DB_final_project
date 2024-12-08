@@ -3,6 +3,9 @@ tutoring_management_system/
 ├── web.php                  # 主頁面 (登入頁面) 12 web
 ├── admin_login.php            # 登入邏輯處理 123 admin login
 ├── logout.php                 # 登出邏輯處理 123 
+├── student_dashboard.php      # 學生主頁面 123 
+├── mentor_dashboard.php       # 輔導老師主頁面 123 
+├── admin_main.php             # 行政人員主頁面 123 
 │
 ├── db/
 │   ├── db.php                 # 資料庫連線設定 

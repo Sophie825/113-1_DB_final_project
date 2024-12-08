@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'db/db.php';
 // include 'templates/header.php';
 
 // 處理新增或修改輔導教師的表單提交

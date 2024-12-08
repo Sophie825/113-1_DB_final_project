@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'db/db.php';
 
 // 處理表單提交（新增或修改）
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
