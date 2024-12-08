@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db/db.php';
+include_once 'db/db.php'; // 引入資料庫連線
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([$username]);
     $user = $stmt->fetch();
 
+    // 驗證密碼
     if ($user && password_verify($password, $user['password'])) {
         // 登入成功，保存會話資訊
         $_SESSION['user_id'] = $user['worker_id'];
@@ -25,9 +26,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: admin_main.php');
         exit();
     } else {
-        // 登入失敗
-        echo "<p>帳號或密碼錯誤！</p>";
-        echo "<a href='admin_login.html'>返回登入頁面</a>";
+        // 登入失敗訊息
+        $error_message = "帳號或密碼錯誤！";
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行政人員員登入</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo"><a href="web.php">BEST MATH</a></div>
+        </header>
+        <main class="main-content">
+            <h2>管理員登入</h2>
+            <?php if (isset($error_message)): ?>
+                <p style="color: red; text-align: center;"><?= htmlspecialchars($error_message) ?></p>
+            <?php endif; ?>
+            <form action="admin_login.php" method="POST" class="login-form">
+                <div class="form-group">
+                    <label for="username">帳號：</label>
+                    <input type="text" id="username" name="username" placeholder="請輸入帳號" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密碼：</label>
+                    <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
+                </div>
+                <button type="submit" class="login-button">登入</button>
+            </form>
+            <p>忘記密碼？請聯繫系統管理員。</p>
+        </main>
+    </div>
+</body>
+</html>
