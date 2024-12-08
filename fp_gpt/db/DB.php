@@ -1,5 +1,5 @@
 <?php
-// 資料庫連線設定
+// 資料庫連線設定 自行設定
 $host = 'localhost';
 $dbname = 'math_school';
 $user = 'postgres';
