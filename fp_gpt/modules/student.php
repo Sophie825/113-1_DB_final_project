@@ -1,9 +1,9 @@
 <?php
-include 'db.php'; 
+include 'db.php';
 
 // 處理表單提交（新增或修改）
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $student_id = $_POST['student_id'];
+    $student_id = $_POST['student_id'] ?? null;
     $student_name = $_POST['student_name'];
     $school = $_POST['school'];
     $grade = $_POST['grade'];
@@ -12,40 +12,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status'];
     $parent_name = $_POST['parent_name'];
     $parent_tel = $_POST['parent_tel'];
+    $version = $_POST['version'] ?? 0;
 
     if ($_POST['action'] === 'create') {
         // 新增學生及家長資料
         $stmt = $pdo->prepare("
-            INSERT INTO STUDENT (student_id, student_name, school, grade, tel, address, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO STUDENT (student_id, student_name, school, grade, tel, address, status, version)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 0)
         ");
         $stmt->execute([$student_id, $student_name, $school, $grade, $tel, $address, $status]);
-    
+
         $stmt = $pdo->prepare("
             INSERT INTO PARENT (parent_name, parent_tel, student_id)
             VALUES (?, ?, ?)
         ");
         $stmt->execute([$parent_name, $parent_tel, $student_id]);
-    
+
         echo "<p>學生新增成功！</p>";
     } elseif ($_POST['action'] === 'update') {
         // 修改學生及家長資料
-        $stmt = $pdo->prepare("
-            UPDATE STUDENT 
-            SET student_name = ?, school = ?, grade = ?, tel = ?, address = ?, status = ? 
-            WHERE student_id = ?
+        // 檢查版本是否匹配
+        $checkStmt = $pdo->prepare("
+            SELECT version FROM STUDENT WHERE student_id = ?
         ");
-        $stmt->execute([$student_name, $school, $grade, $tel, $address, $status, $student_id]);
-    
-        $stmt = $pdo->prepare("
-            INSERT INTO PARENT (parent_name, parent_tel, student_id)
-            VALUES (?, ?, ?)
-            ON CONFLICT (student_id) DO UPDATE 
-            SET parent_name = EXCLUDED.parent_name, parent_tel = EXCLUDED.parent_tel
-        ");
-        $stmt->execute([$parent_name, $parent_tel, $student_id]);
-    
-        echo "<p>學生資料修改成功！</p>";
+        $checkStmt->execute([$student_id]);
+        $currentVersion = $checkStmt->fetchColumn();
+
+        if ($currentVersion == $version) {
+            // 版本匹配，允許更新
+            $stmt = $pdo->prepare("
+                UPDATE STUDENT 
+                SET student_name = ?, school = ?, grade = ?, tel = ?, address = ?, status = ?, version = version + 1
+                WHERE student_id = ?
+            ");
+            $stmt->execute([$student_name, $school, $grade, $tel, $address, $status, $student_id]);
+
+            $stmt = $pdo->prepare("
+                INSERT INTO PARENT (parent_name, parent_tel, student_id)
+                VALUES (?, ?, ?)
+                ON CONFLICT (student_id) DO UPDATE 
+                SET parent_name = EXCLUDED.parent_name, parent_tel = EXCLUDED.parent_tel
+            ");
+            $stmt->execute([$parent_name, $parent_tel, $student_id]);
+
+            echo "<p>學生資料修改成功！</p>";
+        } else {
+            // 版本不匹配，拒絕更新
+            echo "<p>更新失敗，該資料已被其他操作修改，請重新加載頁面。</p>";
+        }
     }
 }
 
@@ -62,6 +76,7 @@ if (isset($_GET['search'])) {
             s.tel, 
             s.address, 
             s.status, 
+            s.version,
             p.parent_name, 
             p.parent_tel
         FROM 
@@ -84,6 +99,7 @@ if (isset($_GET['search'])) {
             s.tel, 
             s.address, 
             s.status, 
+            s.version,
             p.parent_name, 
             p.parent_tel
         FROM 
@@ -172,7 +188,8 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <form id="student-form" method="post" style="display:none;">
                 <h2>新增/修改學生資料</h2>
-                <input type="hidden" name="action" value="create"> <!-- 區分新增與修改 -->
+                <input type="hidden" name="action" value="create">
+                <input type="hidden" name="version" value="0">
                 <label>姓名：<input type="text" name="student_name" required></label><br>
                 <label>學校：<input type="text" name="school"></label><br>
                 <label>年級：<input type="number" name="grade"></label><br>
@@ -187,4 +204,3 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </body>
 </html>
-<?php include 'templates/footer.php'; ?>

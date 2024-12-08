@@ -6,20 +6,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // 驗證帳號密碼
+    // 查詢用戶資料
     $stmt = $pdo->prepare("
-        SELECT worker_id, worker_name, status 
+        SELECT worker_id, worker_name, password, status 
         FROM WORKERS 
-        WHERE worker_name = ? AND password = ?
+        WHERE worker_name = ?
     ");
-    $stmt->execute([$username, $password]);
+    $stmt->execute([$username]);
     $user = $stmt->fetch();
 
-    if ($user) {
+    if ($user && password_verify($password, $user['password'])) {
         // 登入成功，保存會話資訊
         $_SESSION['user_id'] = $user['worker_id'];
         $_SESSION['username'] = $user['worker_name'];
-        $_SESSION['role'] = $user['status']; // 身份：如 "admin"
+        $_SESSION['role'] = $user['status']; // 身份：如 "admin", "student", "mentor"
 
         // 跳轉到管理主頁
         header('Location: admin_main.php');
