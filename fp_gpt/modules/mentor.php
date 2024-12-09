@@ -82,11 +82,11 @@ $mentors = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </header>
         <div class="sidebar">
             <ul class="menu">
-                <li><a href="modules/student.php">學生資料</a></li>
-                <li><a href="modules/teacher.php">教師資料</a></li>
-                <li><a href="modules/mentor.php">輔導教師資料</a></li>
-                <li><a href="modules/class.php">班級資料</a></li>
-                <li><a href="modules/audit.php">試聽資料</a></li>
+                <li><a href="student.php">學生資料</a></li>
+                <li><a href="teacher.php">教師資料</a></li>
+                <li><a href="mentor.php">輔導教師資料</a></li>
+                <li><a href="classroom.php">班級資料</a></li>
+                <li><a href="audit.php">試聽資料</a></li>
             </ul>
         </div>
         
