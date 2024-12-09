@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Math - 查看學生資料</title>
+    <title>Best Math - 班級學生資料</title>
     <link rel="stylesheet" href="./style.css">
     <!-- 引入 Chosen 樣式 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
@@ -21,7 +21,9 @@
                 <li><a href="student.html">學生資料</a></li>
                 <li><a href="teacher.html">教師資料</a></li>
                 <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
                 <li><a href="class.html">班級資料</a></li>
+                <li><a href="time_class_classroom.html">班級教室時間表</a></li>
                 <li><a href="audit.html">試聽資料</a></li>
             </ul>
         </div>
@@ -33,22 +35,22 @@
                     <input type="text" placeholder="搜尋學生資料">
                     <button class="search-button">搜尋</button>
                 </div>
-                <button id="createButton" class="create-button">+ CREATE</button>
+                <button id="createButton" class="create-button">+ 新增</button>
             </div>
             <table class="data-table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NAME</th>
-                        <th>SCHOOL</th>
-                        <th>GRADE</th>
-                        <th>TEL</th>
-                        <th>ADDRESS</th>
-                        <th>CLASS</th>
-                        <th>PARENT</th>
-                        <th>PARENT_TEL</th>
-                        <th>STATUS</th>
-                        <th>EDIT</th>
+                        <th>姓名</th>
+                        <th>學校</th>
+                        <th>年級</th>
+                        <th>電話</th>
+                        <th>地址</th>
+                        <th>班級</th>
+                        <th>家長</th>
+                        <th>家長電話</th>
+                        <th>編輯</th>
+                        <th>刪除</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,8 +64,9 @@
                         <td>高一A班</td>
                         <td>陳淑華</td>
                         <td>0984987654</td>
-                        <td>已離開</td>
                         <td><button class="edit-button" data-type="student">編輯</button></td>
+                        <td><button class="delete-button" data-type="student">刪除</button></td>
+
 
                     </tr>
                 </tbody>

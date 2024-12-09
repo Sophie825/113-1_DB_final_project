@@ -19,7 +19,9 @@
             <li><a href="student.html">學生資料</a></li>
             <li><a href="teacher.html">教師資料</a></li>
             <li><a href="mentor.html">輔導老師資料</a></li>
+            <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
             <li><a href="class.html">班級資料</a></li>
+            <li><a href="time_class_classroom.html">班級教室時間表</a></li>
             <li><a href="audit.html">試聽資料</a></li>
         </ul>
     </div>
@@ -31,7 +33,7 @@
                 <input type="text" id="searchInput" placeholder="搜尋班級資料">
                 <button id="searchButton" class="search-button">搜尋</button>
             </div>
-            <button id="createButton" class="create-button">+ CREATE</button>
+            <button id="createButton" class="create-button">+ 新增</button>
         </div>
 
         <table class="data-table">
@@ -44,6 +46,7 @@
                     <th>人數</th>
                     <th>學生資料</th>
                     <th>編輯</th>
+                    <th>刪除</th>
                 </tr>
             </thead>
             <tbody id="classTableBody">
@@ -54,8 +57,9 @@
                     <td>張老師</td>
                     <td>101</td>
                     <td>30人</td>
-                    <td><button class="edit-button" onclick="location.href='student_list.html'">查看學生名單</button></td>
+                    <td><button class="check-button" onclick="location.href='student_list.html'">查看學生名單</button></td>
                     <td><button class="edit-button" data-id="classA">編輯</button></td>
+                    <td><button class="delete-button" data-id="classA">刪除</button></td>
                 </tr>
             </tbody>
         </table>

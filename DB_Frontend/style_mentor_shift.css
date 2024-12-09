@@ -34,6 +34,10 @@ body {
     font-size: 1.5em;
 }
 
+.header .logo a:hover {
+    text-decoration: underline; /* 滑鼠懸停時加底線 */
+}
+
 
 /* Container */
 .container {
@@ -74,11 +78,12 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-weight: bold;
+    width: 150px;
 }
 
 .option-card h3 {
     font-size: 16;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     /* color: #46688a; */
 }
 
@@ -99,5 +104,7 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 5px;
+    margin-bottom: 20px;
+
+    
 }

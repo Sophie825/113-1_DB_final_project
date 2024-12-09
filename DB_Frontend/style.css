@@ -36,25 +36,30 @@ body {
 
 
 .login-button {
-    background-color: #BDD5EA;
-    color: #577399;
-    font-weight: bold;
+    background-color: transparent;
+    color: white;
+    font-weight: bolder;
     border: none;
     border-radius: 10px;
     border-width: 1px;
     padding: 5px 20px;
     cursor: pointer;
-    margin-right: 50px;
-    font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;   
+    margin-right: 30px;
+    font-size: 16px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;    */
 }
 
 .login-button a{
     text-decoration: none; /* 移除下劃線 */
-    color: #577399; /* 設置文字顏色 */
-    font-weight: bold;
+    color: white; /* 設置文字顏色 */
+    font-weight: bolder;
     display: block; /* 使整個選單項目可以點擊 */
+    
+}
+
+.login-button a:hover{
+    text-decoration: underline;
     
 }
 
@@ -156,7 +161,7 @@ body {
     border-width: 1px;
     padding: 5px 20px;
     cursor: pointer;
-    margin-right: 10px;
+    /* margin-right: 5px; */
     font-size: 14px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease;   
@@ -425,7 +430,7 @@ body {
 }
 
 
-.edit-button {
+.edit-button, .delete-button, .check-button {
     background-color: transparent;
     color: #577399;
     font-weight: bolder;
@@ -435,6 +440,6 @@ body {
     cursor: pointer;
     font-size: 14px;
 }
-.edit-button:hover{
+.edit-button, .delete-button, .check-button:hover{
     text-decoration: underline;    
 }

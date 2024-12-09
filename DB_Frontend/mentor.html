@@ -19,7 +19,9 @@
                 <li><a href="student.html">學生資料</a></li>
                 <li><a href="teacher.html">教師資料</a></li>
                 <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
                 <li><a href="class.html">班級資料</a></li>
+                <li><a href="time_class_classroom.html">班級教室時間表</a></li>
                 <li><a href="audit.html">試聽資料</a></li>
             </ul>
         </div>
@@ -31,17 +33,17 @@
                     <input type="text" placeholder="搜尋教師資料">
                     <button class="search-button">搜尋</button>
                 </div>
-                <button id="createButton" class="create-button">+ CREATE</button>
+                <button id="createButton" class="create-button">+ 新增</button>
             </div>
             <table class="data-table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NAME</th>
-                        <th>TEL</th>
-                        <th>ADDRESS</th>
-                        <th>STATUS</th>
-                        <th>EDIT</th>
+                        <th>姓名</th>
+                        <th>電話</th>
+                        <th>地址</th>
+                        <th>編輯</th>
+                        <th>刪除</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,8 +52,8 @@
                         <td>劉銘傳</td>
                         <td>0928494839</td>
                         <td>台北市中正區徐州路2號</td>
-                        <td>已離開</td>
                         <td><button class="edit-button" data-id="t0001" data-type="mentor">編輯</button></td>
+                        <td><button class="delete-button" data-type="teacher">刪除</button></td>
                     </tr>
                 </tbody>
             </table>
