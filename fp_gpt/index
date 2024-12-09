@@ -29,3 +29,12 @@ tutoring_management_system/
 └── sql/
     └── create_tables.sql      # 資料表建立 SQL 腳本 1
 
+
+
+; 我要：新增class然後換到workers頁面課程管理那邊 可以查詢修改新增 已新增
+; 給modules裡面的html相對應的css  以新增全部
+; edit_mentor_shift 可以更改的然後放到admin main裡面 已修正
+; 然後應該就可以睡了...
+
+
+

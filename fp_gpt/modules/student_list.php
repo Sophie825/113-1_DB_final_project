@@ -34,6 +34,9 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <h2>學生名單</h2>
+<head>
+    <link rel="stylesheet" href="css/student_list.css">
+<head>
 <table border="1">
     <thead>
         <tr>

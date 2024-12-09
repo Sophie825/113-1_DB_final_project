@@ -1,0 +1,103 @@
+/* 全局設置 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F7F8FA;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* 頁首設置 */
+.header {
+    background-color: #577399;
+    height: 50px;
+    color: white;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.header .logo a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: #BDD5EA;
+    color: #577399;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-button a {
+    text-decoration: none;
+    color: #577399;
+}
+
+/* 主內容設置 */
+.content {
+    margin: 70px 20px; /* 與 header 保持間距 */
+}
+
+.content h2 {
+    color: #46688A;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 卡片容器設置 */
+.management-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* 個別卡片設置 */
+.option-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.option-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.option-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
