@@ -26,7 +26,7 @@ include_once 'db/db.php';
         </header>
         <main class="main-content">
             <h2>歡迎，<?= htmlspecialchars($_SESSION['username']); ?>！</h2>
-            <h2>BEST MATH 資料管理系統</h2>
+            <h2>BEST MATH資料管理系統</h2>
             <div class="management-options">
                 <div class="option-card">
                     <h3>學生資料管理</h3>
