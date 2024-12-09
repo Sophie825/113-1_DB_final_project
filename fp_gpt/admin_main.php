@@ -13,7 +13,7 @@ include_once 'db/db.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Best Math - 管理主頁</title>
-    <link rel="stylesheet" href="E:\DB_FinalProject\DB_CSS\style_admin_main.css">
+    <link rel="stylesheet" href="css/style_admin_main.css">
 </head>
 <body>
     <div class="container">

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Best Math - 系統入口</title>
-    <link rel="stylesheet" href="E:\DB_FinalProject\DB_CSS\web.css">
+    <link rel="stylesheet" href="css/style_welcome_page.css">
 </head>
 <body>
     <div class="header">
