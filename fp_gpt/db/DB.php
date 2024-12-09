@@ -3,7 +3,7 @@
 $host = 'localhost';
 $dbname = 'math_school';
 $user = 'postgres';
-$password = '00abc123';
+$password = '000abc123';
 
 try {
     // 使用 PDO 連接 PostgreSQL 資料庫
