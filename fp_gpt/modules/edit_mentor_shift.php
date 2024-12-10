@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<p>班次更新成功！</p>";
 }
 
-
 // 查詢所有班次和導師
 $stmt = $pdo->query("
     SELECT 
+        MENTOR_SHIFT.id, 
         MENTOR_SHIFT.shift, 
         MENTOR_SHIFT.mentor_id, 
         MENTOR.mentor_name
@@ -70,7 +70,7 @@ $mentors = $pdo->query("SELECT mentor_id, mentor_name FROM MENTOR")->fetchAll(PD
                             <td>
                                 <!-- 每筆資料一個獨立的表單 -->
                                 <form method="POST">
-                                    <input type="hidden" name="id" value="<?= htmlspecialchars($shift['shift']) ?>"> <!-- 假設 shift 是唯一標識 -->
+                                    <input type="hidden" name="id" value="<?= htmlspecialchars($shift['id']) ?>"> <!-- 使用唯一的 id -->
                                     <select name="mentor_id" required>
                                         <option value="" disabled selected>選擇導師</option>
                                         <?php foreach ($mentors as $mentor): ?>
@@ -88,11 +88,9 @@ $mentors = $pdo->query("SELECT mentor_id, mentor_name FROM MENTOR")->fetchAll(PD
                 </tbody>
             </table>
         </main>
-        <!-- 頁尾 -->
         <footer>
             © 2024 Math School. All rights reserved.
         </footer>
     </div>
 </body>
 </html>
-
