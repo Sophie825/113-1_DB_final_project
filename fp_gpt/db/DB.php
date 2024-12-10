@@ -12,7 +12,7 @@ try {
     // 設定錯誤模式為拋出異常
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    echo "資料庫連線成功！";
+    // echo "資料庫連線成功！";
 
 } catch (PDOException $e) {
     // 捕捉連線錯誤並顯示訊息
