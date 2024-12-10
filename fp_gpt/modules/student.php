@@ -26,6 +26,24 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     ");
     $stmt->execute(["%$search_query%", "%$search_query%"]);
     $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // 預設顯示100筆資料
+    $stmt = $pdo->query("
+        SELECT 
+            s.student_id, 
+            s.student_name, 
+            s.school, 
+            s.grade, 
+            s.tel, 
+            s.address, 
+            s.status,
+            p.parent_name, 
+            p.parent_tel 
+        FROM STUDENT s
+        LEFT JOIN PARENT p ON s.student_id = p.student_id
+        LIMIT 100
+    ");
+    $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // 點選學生後載入該學生詳細資料
@@ -50,6 +68,7 @@ if (isset($_GET['student_id']) && !empty(trim($_GET['student_id']))) {
     $stmt->execute([$student_id]);
     $student_details = $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
 
 // 處理表單提交（新增或修改）
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -184,8 +203,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php if ($student_details): ?>
                 <form method="post">
                     <input type="hidden" name="action" value="update">
-                    <input type="hidden" name="student_id" value="<?= htmlspecialchars($student_details['student_id']) ?>">
                     <input type="hidden" name="version" value="<?= htmlspecialchars($student_details['version']) ?>">
+                    <input type="hidden" name="student_id" value="<?= htmlspecialchars($student_details['student_id']) ?>">
+                    <label>ID:<input type="text" name="student_id+ value="<?= htmkspecialchars($student_details['student_id']) ?>: required><label><br>
                     <label>姓名：<input type="text" name="student_name" value="<?= htmlspecialchars($student_details['student_name']) ?>" required></label><br>
                     <label>學校：<input type="text" name="school" value="<?= htmlspecialchars($student_details['school']) ?>"></label><br>
                     <label>年級：<input type="number" name="grade" value="<?= htmlspecialchars($student_details['grade']) ?>"></label><br>
@@ -201,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- 新增表單 -->
             <form id="create-form" method="post" style="display:none;">
                 <input type="hidden" name="action" value="create">
-                <label>ID：<input type="text" name="student_id" required></label><br>
+                <label>ID:<input type="text" name="student_id" required></label><br>
                 <label>姓名：<input type="text" name="student_name" required></label><br>
                 <label>學校：<input type="text" name="school"></label><br>
                 <label>年級：<input type="number" name="grade"></label><br>
