@@ -4,19 +4,20 @@ include '../templates/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 處理更新操作
-    $shift = $_POST['shift'];
+    $id = $_POST['id']; // 唯一的主鍵 ID
     $mentor_id = $_POST['mentor_id'];
 
-    // 更新班次對應的導師
+    // 更新特定班次對應的導師
     $stmt = $pdo->prepare("
         UPDATE MENTOR_SHIFT
         SET mentor_id = ?
-        WHERE shift = ?
+        WHERE id = ?
     ");
-    $stmt->execute([$mentor_id, $shift]);
+    $stmt->execute([$mentor_id, $id]);
 
-    // echo "<p>班次更新成功！</p>";
+    echo "<p>班次更新成功！</p>";
 }
+
 
 // 查詢所有班次和導師
 $stmt = $pdo->query("
@@ -52,22 +53,24 @@ $mentors = $pdo->query("SELECT mentor_id, mentor_name FROM MENTOR")->fetchAll(PD
     <div class="container">
         <main class="content">
             <h1>編輯輔導老師班表</h1>
-            <form method="POST">
-                <table class="data-table">
-                    <thead>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>班次</th>
+                        <th>目前導師</th>
+                        <th>選擇新導師</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($shifts as $shift): ?>
                         <tr>
-                            <th>班次</th>
-                            <th>目前導師</th>
-                            <th>選擇新導師</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($shifts as $shift): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($shift['shift']) ?></td>
-                                <td><?= htmlspecialchars($shift['mentor_name'] ?? '無指定導師') ?></td>
-                                <td>
+                            <td><?= htmlspecialchars($shift['shift']) ?></td>
+                            <td><?= htmlspecialchars($shift['mentor_name'] ?? '無指定導師') ?></td>
+                            <td>
+                                <!-- 每筆資料一個獨立的表單 -->
+                                <form method="POST">
+                                    <input type="hidden" name="id" value="<?= htmlspecialchars($shift['shift']) ?>"> <!-- 假設 shift 是唯一標識 -->
                                     <select name="mentor_id" required>
                                         <option value="" disabled selected>選擇導師</option>
                                         <?php foreach ($mentors as $mentor): ?>
@@ -77,17 +80,13 @@ $mentors = $pdo->query("SELECT mentor_id, mentor_name FROM MENTOR")->fetchAll(PD
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
-                                </td>
-                                <td>
-                                    <button type="submit" name="shift" value="<?= htmlspecialchars($shift['shift']) ?>">
-                                        更新
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </form>
+                                    <button type="submit">更新</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </main>
         <!-- 頁尾 -->
         <footer>
@@ -96,3 +95,4 @@ $mentors = $pdo->query("SELECT mentor_id, mentor_name FROM MENTOR")->fetchAll(PD
     </div>
 </body>
 </html>
+
