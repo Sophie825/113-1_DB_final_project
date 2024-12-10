@@ -4,33 +4,42 @@ include '../templates/header.php';
 
 // 處理新增或修改教師的表單提交
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['teacher_id']) && !isset($_POST['update_teacher'])) {
-        // 新增教師
-        $teacher_id = $_POST['teacher_id'];
-        $teacher_name = $_POST['teacher_name'];
-        $tel = $_POST['tel'];
-        $address = $_POST['address'];
-        $status = $_POST['status'];
+    try {
+        if (isset($_POST['teacher_id']) && !isset($_POST['update_teacher'])) {
+            echo "<p>新增教師表單已提交</p>";
 
-        $stmt = $pdo->prepare("INSERT INTO TEACHER (teacher_id, teacher_name, tel, address, status)
-                               VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$teacher_id, $teacher_name, $tel, $address, $status]);
-        // echo "<p>教師新增成功！</p>";
-    } elseif (isset($_POST['update_teacher'])) {
-        // 修改教師資料
-        $teacher_id = $_POST['teacher_id'];
-        $teacher_name = $_POST['teacher_name'];
-        $tel = $_POST['tel'];
-        $address = $_POST['address'];
-        $status = $_POST['status'];
+            // 驗證表單值是否完整
+            if (empty($_POST['teacher_id']) || empty($_POST['teacher_name']) || empty($_POST['status'])) {
+                echo "<p>所有必要欄位必須填寫</p>";
+                return;
+            }
 
-        $stmt = $pdo->prepare("UPDATE TEACHER 
-                               SET teacher_name = ?, tel = ?, address = ?, status = ? 
-                               WHERE teacher_id = ?");
-        $stmt->execute([$teacher_name, $tel, $address, $status, $teacher_id]);
-        // echo "<p>教師修改成功！</p>";
+            $teacher_id = $_POST['teacher_id'];
+            $teacher_name = $_POST['teacher_name'];
+            $tel = $_POST['tel'] ?? null;
+            $address = $_POST['address'] ?? null;
+            $status = $_POST['status'];
+
+            // 檢查是否已存在
+            $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM TEACHER WHERE teacher_id = ?");
+            $checkStmt->execute([$teacher_id]);
+            if ($checkStmt->fetchColumn() > 0) {
+                echo "<p>教師 ID 已存在</p>";
+                return;
+            }
+
+            // 執行新增
+            $stmt = $pdo->prepare("INSERT INTO TEACHER (teacher_id, teacher_name, tel, address, status)
+                                   VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$teacher_id, $teacher_name, $tel, $address, $status]);
+
+            echo "<p>教師新增成功</p>";
+        }
+    } catch (PDOException $e) {
+        echo "<p>資料庫錯誤：{$e->getMessage()}</p>";
     }
 }
+
 
 // 查詢教師資料
 if (isset($_GET['search'])) {
