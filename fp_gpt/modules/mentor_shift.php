@@ -40,7 +40,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 <body>
     <header class="header">
         <div class="logo">
-            <a href="web.php">BEST MATH</a>
+            <a href="web.php">MATH SCHOOL</a>
         </div>
     </header>
 

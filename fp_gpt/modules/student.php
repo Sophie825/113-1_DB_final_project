@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo"><a href="web.php">BEST MATH</a></div>
+            <div class="logo"><a href="web.php">MATH SCHOOL</a></div>
             <button class="login-button"><a href="web.php">登出</a></button>
         </header>
         <div class="sidebar">

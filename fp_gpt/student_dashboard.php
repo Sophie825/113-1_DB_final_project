@@ -14,7 +14,7 @@ session_start();
     <div class="container">
         <!-- 頁面頂部 -->
         <header class="header">
-            <div class="logo"><a href="web.php">BEST MATH</a></div>
+            <div class="logo"><a href="web.php">MATH SCHOOL</a></div>
         </header>
 
         <!-- 主內容區 -->

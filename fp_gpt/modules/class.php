@@ -80,7 +80,7 @@ $classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <div class="container">
     <header class="header">
-        <div class="logo"><a href="web.html">BEST MATH</a></div>
+        <div class="logo"><a href="web.html">MATH SCHOOL</a></div>
         <button class="login-button"><a href="web.html">登出</a></button>
     </header>
 

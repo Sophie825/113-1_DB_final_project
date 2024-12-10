@@ -10,10 +10,10 @@
 </head>
 <body>
     <div class="header">
-        <h1>BEST MATH</h1>
+        <h1>MATH SCHOOL</h1>
     </div>
     <div class="welcome-section">
-        <h2>歡迎來到 Math Schol</h2>
+        <h2>歡迎來到 Math School</h2>
         <p>請選擇您的身份以進入系統</p>
         <div class="card-container">
             <div class="card">

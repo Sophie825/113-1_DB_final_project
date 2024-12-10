@@ -45,7 +45,7 @@ $mentors = $pdo->query("SELECT mentor_id, mentor_name FROM MENTOR")->fetchAll(PD
 <body>
     <header class="header">
         <div class="logo">
-            <a href="web.php">BEST MATH</a>
+            <a href="web.php">MATH SCHOOL</a>
         </div>
     </header>
 
