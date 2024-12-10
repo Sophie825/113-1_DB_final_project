@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # 113-1_DB_final_project
 =======
-# 113-1 資料庫管理 - MathSchool 專案範例
+# 113-1 資料庫管理 - MathSchool 專案
 
 
 
