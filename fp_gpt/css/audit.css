@@ -5,10 +5,10 @@ body {
     background-color: #F7F8FA;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
-/* 頁首設置 */
+/* Header */
 .header {
     background-color: #577399;
     height: 50px;
@@ -17,11 +17,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -32,39 +27,16 @@ body {
     font-size: 1.5em;
 }
 
-.header .logo a:hover {
-    text-decoration: underline;
-}
-
-.login-button {
-    background-color: #BDD5EA;
-    color: #577399;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    padding: 5px 20px;
-    cursor: pointer;
-    font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.login-button a {
-    text-decoration: none;
-    color: #577399;
-}
-
-/* 側邊欄 */
+/* Sidebar */
 .sidebar {
     width: 250px;
     background-color: #46688A;
-    height: 100%;
+    height: 100vh;
     position: fixed;
-    top: 50px; /* 與 header 保持一致 */
+    top: 50px;
     left: 0;
     padding-top: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
 }
 
 .sidebar ul {
@@ -91,11 +63,11 @@ body {
     background-color: #577399;
 }
 
-/* 主內容 */
+/* Main Content */
 .content {
-    margin-left: 270px; /* 與 sidebar 保持間距 */
+    margin-left: 270px;
     padding: 20px;
-    margin-top: 70px; /* 與 header 保持間距 */
+    margin-top: 70px;
 }
 
 .content-header {
@@ -150,7 +122,7 @@ body {
     background-color: #46688A;
 }
 
-/* 表格樣式 */
+/* Data Table */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -179,19 +151,26 @@ body {
     background-color: #ddd;
 }
 
-/* 按鈕樣式 */
-button {
+.data-table td button {
+    background: none;
+    border: none;
+    color: #577399;
     cursor: pointer;
     font-size: 14px;
+    text-decoration: underline;
 }
 
-button:hover {
-    transform: translateY(-2px);
+.data-table td button:hover {
+    color: #3a5776;
 }
 
-/* 表單樣式 */
+/* Form */
 form {
     margin: 20px 0;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 form label {
@@ -215,19 +194,21 @@ form button {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 form button:hover {
     background-color: #3a5776;
 }
 
+/* Footer */
 footer {
     background-color: #BDD5EA;
     text-align: center;
     padding: 10px;
     color: #577399;
     font-size: 0.9em;
-    width: 100%; /* 滿版 Footer */
+    margin-top: auto;
+    width: 100%;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: auto; /* 確保 Footer 固定在底部 */
 }

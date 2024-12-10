@@ -1,17 +1,11 @@
-/* 通用設置 */
+/* 全局設置 */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #F7F8FA;
     display: flex;
     flex-direction: column;
-    background-color: #F7F8FA;
-    color: #333;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    min-height: 100vh;
 }
 
 /* 頁首樣式 */
@@ -19,14 +13,14 @@ body {
     background-color: #577399;
     height: 50px;
     color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    display: flex;
+    align-items: center;
+    position: fixed;
     top: 0;
+    width: 100%;
     z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header .logo a {
@@ -40,57 +34,66 @@ body {
     text-decoration: underline;
 }
 
-/* 主內容樣式 */
-.content {
-    margin-top: 20px;
+/* 主要容器 */
+.container {
+    margin-top: 70px; /* 與頁首保持距離 */
+    padding: 20px;
 }
 
-.content h1 {
+/* 主內容標題 */
+h1 {
     color: #46688A;
-    font-size: 2em;
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 /* 表格樣式 */
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.data-table thead {
-    background-color: #BDD5EA;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .data-table th,
 .data-table td {
-    padding: 10px;
+    padding: 15px;
     text-align: left;
     border: 1px solid #ddd;
 }
 
 .data-table th {
+    background-color: #46688A;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.data-table td {
+    text-align: center;
     font-size: 1em;
-    color: #577399;
 }
 
 .data-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #F7F8FA;
 }
 
 .data-table tr:hover {
-    background-color: #f1f1f1;
+    background-color: #ddd;
 }
 
 /* 下拉選單樣式 */
 select {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* 按鈕樣式 */
@@ -98,43 +101,63 @@ button {
     background-color: #577399;
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
+    padding: 8px 12px;
+    font-size: 14px;
     cursor: pointer;
-    font-size: 1em;
+    border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: #46688A;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
-button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-}
-
-/* 表單樣式 */
-form {
-    margin-top: 20px;
-}
-
-form table {
-    width: 100%;
-}
-
-form select {
-    width: 100%;
-}
-
+/* 頁尾樣式 */
 footer {
     background-color: #BDD5EA;
     text-align: center;
     padding: 10px;
     color: #577399;
     font-size: 0.9em;
-    width: 100%; /* 滿版 Footer */
+    margin-top: auto;
+    width: 100%;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: auto; /* 確保 Footer 固定在底部 */
+}
+
+/* 側邊欄樣式 */
+.sidebar {
+    width: 250px;
+    background-color: #46688A;
+    height: 100%;
+    position: fixed;
+    top: 50px; /* 與 header 保持一致 */
+    left: 0;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #577399;
 }

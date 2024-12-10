@@ -1,4 +1,4 @@
-/* 全局設置 */
+ /* 全局設置 */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -54,13 +54,13 @@ body {
     color: #577399;
 }
 
-/* 側邊欄設置 */
+/* 側邊欄 */
 .sidebar {
     width: 250px;
     background-color: #46688A;
     height: 100%;
     position: fixed;
-    top: 50px; /* 與 header 保持一致 */
+    top: 50px;
     left: 0;
     padding-top: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -91,49 +91,59 @@ body {
     background-color: #577399;
 }
 
-/* 主內容設置 */
+/* 主內容 */
 .content {
-    margin-left: 270px; /* 與 sidebar 保持間距 */
+    margin-left: 270px;
     padding: 20px;
-    margin-top: 70px; /* 與 header 保持間距 */
+    margin-top: 70px;
 }
 
-.content-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+/* 表格樣式 */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid #46688A; /* 更明顯的表格邊框 */
 }
 
-.content-header h1 {
-    color: #46688A;
-    font-size: 2em;
+.data-table th,
+.data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #46688A; /* 單元格分隔線 */
 }
 
-.search-bar {
-    display: flex;
-    gap: 10px;
-}
-
-.search-bar input {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.search-bar button {
+.data-table th {
     background-color: #46688A;
     color: white;
-    border: none;
-    padding: 8px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
 }
 
-.search-bar button:hover {
+.data-table tr:nth-child(even) {
+    background-color: #F7F8FA; /* 偶數行背景 */
+}
+
+.data-table tr:hover {
+    background-color: #ddd; /* 懸停行高亮 */
+}
+
+/* 按鈕樣式 */
+.data-table td button {
+    background-color: #577399;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.data-table td button:hover {
     background-color: #3a5776;
+    transform: translateY(-2px);
 }
 
 .create-button {
@@ -150,86 +160,16 @@ body {
     background-color: #46688A;
 }
 
-/* 表格設置 */
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.data-table th,
-.data-table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-.data-table th {
-    background-color: #46688A;
-    color: white;
-    font-weight: bold;
-}
-
-.data-table tr:nth-child(even) {
-    background-color: #F7F8FA;
-}
-
-.data-table tr:hover {
-    background-color: #ddd;
-}
-
-/* 按鈕設置 */
-button {
-    cursor: pointer;
-    font-size: 14px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #46688A;
-    color: white;
-}
-
-/* 彈出框設置 */
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 2000;
-}
-
-.modal h2 {
-    color: #46688A;
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-
-.modal label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.modal input,
-.modal select {
-    width: 100%;
+.search-bar input {
     padding: 8px;
-    margin-bottom: 15px;
+    font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    margin-right: 10px;
 }
 
-.modal button {
-    background-color: #577399;
+.search-bar button {
+    background-color: #46688A;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -238,10 +178,11 @@ button:hover {
     border-radius: 5px;
 }
 
-.modal button:hover {
-    background-color: #46688A;
+.search-bar button:hover {
+    background-color: #3a5776;
 }
 
+/* Footer */
 footer {
     background-color: #BDD5EA;
     text-align: center;
