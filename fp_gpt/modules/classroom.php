@@ -23,7 +23,7 @@ $stmt->execute(['113-1']);
 <h2>113-1 學期課程一覽</h2>
 <div class="management-options">
 <head>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/classroom.css">
 <head>
 
     <?php while ($row = $stmt->fetch()): ?>
