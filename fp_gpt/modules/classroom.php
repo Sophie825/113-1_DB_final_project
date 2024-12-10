@@ -33,6 +33,9 @@ $stmt->execute(['113-1']);
             <p>老師：<?php echo htmlspecialchars($row['teacher_name'] ?? '無指定老師'); ?></p>
         </div>
     <?php endwhile; ?>
+    <!-- 頁尾 -->
+    <footer>
+            © 2024 Math School. All rights reserved.
+    </footer>
 </div>
 
-<?php include '../templates/footer.php'; ?>

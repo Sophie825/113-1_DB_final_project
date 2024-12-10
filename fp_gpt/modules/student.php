@@ -212,6 +212,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit">新增</button>
             </form>
         </main>
+        <!-- 頁尾 -->
+        <footer>
+            © 2024 Math School. All rights reserved.
+        </footer>
     </div>
 </body>
 </html>

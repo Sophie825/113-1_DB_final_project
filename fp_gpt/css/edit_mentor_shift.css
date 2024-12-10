@@ -127,3 +127,14 @@ form table {
 form select {
     width: 100%;
 }
+
+footer {
+    background-color: #BDD5EA;
+    text-align: center;
+    padding: 10px;
+    color: #577399;
+    font-size: 0.9em;
+    width: 100%; /* 滿版 Footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: auto; /* 確保 Footer 固定在底部 */
+}

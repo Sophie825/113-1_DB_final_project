@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Math - 系統入口</title>
+    <title>Math School - 系統入口</title>
     <link rel="stylesheet" href="css/style_welcome_page.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
         <h1>BEST MATH</h1>
     </div>
     <div class="welcome-section">
-        <h2>歡迎來到 BEST MATH</h2>
+        <h2>歡迎來到 Math Schol</h2>
         <p>請選擇您的身份以進入系統</p>
         <div class="card-container">
             <div class="card">
@@ -29,7 +29,10 @@
                 <button onclick="window.location.href='admin_login.php'">登入</button>
             </div>
         </div>
+        <footer>
+            © 2024 Math School. All rights reserved.
+        </footer>
     </div>
+
 </body>
 </html>
-<?php include 'templates/footer.php'; ?>

@@ -53,6 +53,10 @@ include_once 'db/db.php';
                 </div>
             </div>
         </main>
+        <!-- 頁尾 -->
+        <footer>
+            © 2024 Math School. All rights reserved.
+        </footer>
     </div>
 </body>
 </html>

@@ -149,6 +149,10 @@ $mentors = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <button type="submit">提交</button>
             </form>
         </main>
+        <!-- 頁尾 -->
+        <footer>
+            © 2024 Math School. All rights reserved.
+        </footer>
     </div>
 
     <script>
@@ -165,4 +169,3 @@ $mentors = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 </body>
 </html>
-<?php include '../templates/footer.php'; ?>

@@ -89,6 +89,10 @@ $mentors = $pdo->query("SELECT mentor_id, mentor_name FROM MENTOR")->fetchAll(PD
                 </table>
             </form>
         </main>
+        <!-- 頁尾 -->
+        <footer>
+            © 2024 Math School. All rights reserved.
+        </footer>
     </div>
 </body>
 </html>

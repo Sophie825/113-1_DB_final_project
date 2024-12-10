@@ -202,3 +202,14 @@ form button:hover {
     background-color: #46688A;
     transform: translateY(-2px);
 }
+
+footer {
+    background-color: #BDD5EA;
+    text-align: center;
+    padding: 10px;
+    color: #577399;
+    font-size: 0.9em;
+    margin-top: auto; /* 確保 Footer 始終在頁面底部 */
+    width: 100%; /* 滿版 Footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}

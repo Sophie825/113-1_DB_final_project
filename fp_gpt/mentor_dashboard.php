@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>輔導老師主頁</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/student_dashboard.css">
 </head>
 <body>
     <div class="container">
@@ -32,7 +32,10 @@ session_start();
         </main>
 
         <!-- 頁尾 -->
-        <?php include 'templates/footer.php'; ?>
+        <footer>
+            © 2024 Math School. All rights reserved.
+        </footer>
+    
     </div>
 </body>
 </html>

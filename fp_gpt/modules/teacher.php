@@ -125,6 +125,9 @@ $teachers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <button type="submit">提交</button>
             </form>
         </main>
+        <footer>
+            © 2024 Best Math. All rights reserved.
+        </footer>
     </div>
 
     <script>
@@ -141,4 +144,3 @@ $teachers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 </body>
 </html>
-<?php include '../templates/footer.php'; ?>

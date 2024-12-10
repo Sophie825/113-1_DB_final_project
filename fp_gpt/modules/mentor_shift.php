@@ -60,7 +60,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <?php endforeach; ?>
             </div>
         </main>
+        <!-- 頁尾 -->
+        <footer>
+            © 2024 Math School. All rights reserved.
+        </footer>
     </div>
 </body>
 </html>
-<?php include '../templates/footer.php'; ?>
