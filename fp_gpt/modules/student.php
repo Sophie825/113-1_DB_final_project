@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ");
         $stmt->execute([$parent_name, $parent_tel, $student_id]);
 
-        echo "<p>學生新增成功！</p>";
+        // echo "<p>學生新增成功！</p>";
     } elseif ($action === 'update') {
         // 修改學生及家長資料
         $checkStmt = $pdo->prepare("SELECT version FROM STUDENT WHERE student_id = ?");
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ");
             $stmt->execute([$parent_name, $parent_tel, $student_id]);
 
-            echo "<p>學生資料修改成功！</p>";
+            // echo "<p>學生資料修改成功！</p>";
         } else {
             echo "<p>更新失敗，資料已被其他操作修改，請重新載入頁面。</p>";
         }

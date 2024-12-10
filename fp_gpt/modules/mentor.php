@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("INSERT INTO MENTOR (mentor_id, mentor_name, tel, address, status)
                                VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$mentor_id, $mentor_name, $tel, $address, $status]);
-        echo "<p>輔導教師新增成功！</p>";
+        // echo "<p>輔導教師新增成功！</p>";
     } elseif (isset($_POST['update_mentor'])) {
         // 修改輔導教師
         $mentor_id = $_POST['mentor_id'];
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                SET mentor_name = ?, tel = ?, address = ?, status = ? 
                                WHERE mentor_id = ?");
         $stmt->execute([$mentor_name, $tel, $address, $status, $mentor_id]);
-        echo "<p>輔導教師修改成功！</p>";
+        // echo "<p>輔導教師修改成功！</p>";
     }
 }
 

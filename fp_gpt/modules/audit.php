@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("INSERT INTO AUDIT (audit_id, audit_name, school, grade, tel, address, status)
                                VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$audit_id, $audit_name, $school, $grade, $tel, $address, $status]);
-        echo "<p>試聽記錄新增成功！</p>";
+        // echo "<p>試聽記錄新增成功！</p>";
     }
 
     // 修改審核記錄
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                SET audit_name = ?, school = ?, grade = ?, tel = ?, address = ?, status = ? 
                                WHERE audit_id = ?");
         $stmt->execute([$audit_name, $school, $grade, $tel, $address, $status, $audit_id]);
-        echo "<p>試聽記錄修改成功！</p>";
+        //echo "<p>試聽記錄修改成功！</p>";
     }
 }
 

@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ");
     $stmt->execute([$mentor_id, $shift]);
 
-    echo "<p>班次更新成功！</p>";
+    // echo "<p>班次更新成功！</p>";
 }
 
 // 查詢所有班次和導師
