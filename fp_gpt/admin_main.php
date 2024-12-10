@@ -40,12 +40,12 @@ include_once 'db/db.php';
                     <button class="click_in"><a href="modules/mentor.php">進入</a></button>
                 </div>
                 <div class="option-card">
-                    <h3>輔導老師資料管理</h3>
+                    <h3>輔導老師排班資料管理</h3>
                     <button class="click_in"><a href="modules/edit_mentor_shift.php">進入</a></button>
                 </div>
                 <div class="option-card">
                     <h3>班級資料管理</h3>
-                    <button class="click_in"><a href="modules/classroom.php">進入</a></button>
+                    <button class="click_in"><a href="modules/class.php">進入</a></button>
                 </div>
                 <div class="option-card">
                     <h3>試聽資料管理</h3>
