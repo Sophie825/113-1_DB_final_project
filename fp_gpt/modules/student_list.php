@@ -19,7 +19,6 @@ $stmt = $pdo->prepare("
         STUDENT.grade, 
         STUDENT.tel, 
         STUDENT.address, 
-        STUDENT.status, 
         PARENT.parent_name, 
         PARENT.parent_tel
     FROM TAKE
@@ -48,7 +47,6 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th>ADDRESS</th>
             <th>PARENT</th>
             <th>PARENT_TEL</th>
-            <th>STATUS</th>
         </tr>
     </thead>
     <tbody>
@@ -63,7 +61,6 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($student['address']); ?></td>
                     <td><?php echo htmlspecialchars($student['parent_name'] ?? '無家長資料'); ?></td>
                     <td><?php echo htmlspecialchars($student['parent_tel'] ?? '無家長電話'); ?></td>
-                    <td><?php echo htmlspecialchars($student['status']); ?></td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
