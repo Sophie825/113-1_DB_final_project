@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Best Math - 學生資料</title>
-    <link rel="stylesheet" href="css/student.css">
+    <link rel="stylesheet" href="../css/student.css">
 </head>
 <body>
     <div class="container">

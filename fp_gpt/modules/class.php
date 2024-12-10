@@ -75,7 +75,7 @@ $classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Best Math - 班級資料</title>
-    <link rel="stylesheet" href="./class.css">
+    <link rel="stylesheet" href="../css/class.css">
 </head>
 <body>
 <div class="container">
