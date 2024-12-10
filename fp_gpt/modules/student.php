@@ -201,6 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- 新增表單 -->
             <form id="create-form" method="post" style="display:none;">
                 <input type="hidden" name="action" value="create">
+                <label>ID：<input type="text" name="student_id" required></label><br>
                 <label>姓名：<input type="text" name="student_name" required></label><br>
                 <label>學校：<input type="text" name="school"></label><br>
                 <label>年級：<input type="number" name="grade"></label><br>

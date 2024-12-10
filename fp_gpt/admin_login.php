@@ -63,10 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
             <p>忘記密碼？請聯繫系統管理員。</p>
         </main>
-        <!-- 頁尾 -->
+        <!-- 頁尾 >
         <footer>
             © 2024 Math School. All rights reserved.
-        </footer>
+        </footer -->
     </div>
 </body>
 </html>
