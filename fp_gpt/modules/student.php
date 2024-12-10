@@ -86,21 +86,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $version = $_POST['version'] ?? 0;
 
     if ($action === 'create') {
+        // 檢查 student_id 是否已存在
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM STUDENT WHERE student_id = ?");
+        $stmt->execute([$student_id]);
+        if ($stmt->fetchColumn() > 0) {
+            // 如果 student_id 已存在，提示錯誤並停止執行
+            echo "<p>學生 ID 已存在，請使用不同的 ID。</p>";
+            return; // 停止執行後續操作
+        }
+    
         // 新增學生及家長資料
         $stmt = $pdo->prepare("
-            INSERT INTO STUDENT (student_name, school, grade, tel, address, status, version)
-            VALUES (?, ?, ?, ?, ?, ?, 0)
+            INSERT INTO STUDENT (student_id, student_name, school, grade, tel, address, status, version)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 0)
         ");
-        $stmt->execute([$student_name, $school, $grade, $tel, $address, $status]);
-        $student_id = $pdo->lastInsertId();
-
+        $stmt->execute([$student_id, $student_name, $school, $grade, $tel, $address, $status]);
+    
         $stmt = $pdo->prepare("
             INSERT INTO PARENT (parent_name, parent_tel, student_id)
             VALUES (?, ?, ?)
         ");
         $stmt->execute([$parent_name, $parent_tel, $student_id]);
-
-        // echo "<p>學生新增成功！</p>";
+    
+        echo "<p>學生新增成功！</p>";
+    
+    
     } elseif ($action === 'update') {
         // 修改學生及家長資料
         $checkStmt = $pdo->prepare("SELECT version FROM STUDENT WHERE student_id = ?");
